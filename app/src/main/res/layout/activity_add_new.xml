@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentBottom="true"
+    tools:context=".Activities.AddNewActivity">
+
+    <!-- Create New Tasks -->
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:layout_alignTop="@id/create_new_"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="28dp"
+        android:layout_toStartOf="@id/create_new_"
+        android:alpha="0.36"
+        android:background="@color/line_color" />
+
+    <TextView
+        android:id="@+id/description2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextTextPersonName2"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="top"
+        android:text="@string/date"
+        android:textAppearance="@style/topic" />
+
+    <TextView
+        android:id="@+id/create_new_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="@string/create_new_"
+        android:textAppearance="@style/create_new_" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:layout_alignTop="@id/create_new_"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="28dp"
+        android:layout_toEndOf="@id/create_new_"
+        android:alpha="0.36"
+        android:background="@color/line_color" />
+
+    <!-- Topic -->
+    <TextView
+        android:id="@+id/topic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/create_new_"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="top"
+        android:text="@string/topic"
+        android:textAppearance="@style/topic" />
+
+    <EditText
+        android:id="@+id/editTextTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topic"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:ems="10"
+        android:hint="@string/title_placeholder"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp" />
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextTitle"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="top"
+        android:text="@string/description"
+        android:textAppearance="@style/topic" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/description"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:ems="10"
+        android:hint="@string/description"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp" />
+
+    <!-- Notification -->
+    <DatePicker
+        android:id="@+id/datePicker1"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@id/description2"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner" />
+
+    <TextView
+        android:id="@+id/notificatio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/datePicker1"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="top"
+        android:text="@string/notification"
+        android:textAppearance="@style/topic" />
+
+    <LinearLayout
+
+        android:id="@+id/noti_pick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/notificatio"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/spinner_background"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="4"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:spinnerMode="dropdown" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:contentDescription="@string/drop_down_arrow"
+            android:src="@drawable/ic_chevron_down_blue" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_add"
+        android:onClick="SaveNewTodo"
+        android:text="@string/add"
+        android:textColor="#FFFFFF" />
+
+
+</RelativeLayout>

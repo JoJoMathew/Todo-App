@@ -6,4 +6,5 @@
     <color name="colorAccent">#5A84B3</color>
     <color name="colorAccentOff">#1C3A50</color>
     <color name="white">#FFFFFF</color>
+    <color name="line_color">#979797</color>
 </resources>
