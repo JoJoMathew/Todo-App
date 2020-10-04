@@ -24,6 +24,8 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     private static final String TITLE = "title";
     private static final String Desc = "description";
     private static final String _date = "date";
+    private static final String _done = "done";
+
 
     public DataBaseHandler(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -35,7 +37,8 @@ public class DataBaseHandler extends SQLiteOpenHelper {
                 + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + TITLE + " TEXT,"
                 + Desc + " TEXT,"
-                + _date + " TEXT"
+                + _date + " TEXT,"
+                + _done + " TEXT"
                 + ")";
         db.execSQL(CREATE_TABLE);
     }
@@ -52,7 +55,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
 
     // Add New Record Details
-    void insertUserDetails(String title, String description, String date) {
+    public void insertUserDetails(String title, String description, String date, String done) {
 
         // Get the Data Repository in write mode
         SQLiteDatabase db = this.getWritableDatabase();
@@ -62,9 +65,11 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         cValues.put(TITLE, title);
         cValues.put(Desc, description);
         cValues.put(_date, date);
+        cValues.put(_done, done);
 
         // Insert new row, returning the primary key value of the new row
-        long newRowId = db.insert(TABLE_Records, null, cValues);
+        //long newRowId = db.insert(TABLE_Records, null, cValues);
+        db.insert(TABLE_Records, null, cValues);
         db.close();
     }
 
@@ -72,13 +77,14 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     public ArrayList<HashMap<String, String>> GetRecords() {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<HashMap<String, String>> dataList = new ArrayList<>();
-        String query = "SELECT id, title, desc1, date FROM " + TABLE_Records;
+        String query = "SELECT id, title, description, date, done FROM " + TABLE_Records;
         Cursor cursor = db.rawQuery(query, null);
         while (cursor.moveToNext()) {
             HashMap<String, String> record = new HashMap<>();
             record.put("title", cursor.getString(cursor.getColumnIndex(TITLE)));
             record.put("desc1", cursor.getString(cursor.getColumnIndex(Desc)));
             record.put("date", cursor.getString(cursor.getColumnIndex(_date)));
+            record.put("done", cursor.getString(cursor.getColumnIndex(_done)));
             record.put("id", cursor.getString(cursor.getColumnIndex(KEY_ID)));
             dataList.add(record);
         }
@@ -92,13 +98,14 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ArrayList<HashMap<String, String>> record_list = new ArrayList<>();
         // String query = "SELECT qr_code, desc_1, desc_2 desc_3 parts price date FROM "+ TABLE_Records;
-        Cursor cursor = db.query(TABLE_Records, new String[]{TITLE, Desc, _date}, KEY_ID + "=?", new String[]{String.valueOf(record_id)}, null, null, null, null);
+        Cursor cursor = db.query(TABLE_Records, new String[]{TITLE, Desc, _date, _done}, KEY_ID + "=?", new String[]{String.valueOf(record_id)}, null, null, null, null);
 
         if (cursor.moveToNext()) {
             HashMap<String, String> rec = new HashMap<>();
             rec.put("title", cursor.getString(cursor.getColumnIndex(TITLE)));
             rec.put("desc1", cursor.getString(cursor.getColumnIndex(Desc)));
             rec.put("date", cursor.getString(cursor.getColumnIndex(_date)));
+            rec.put("done", cursor.getString(cursor.getColumnIndex(_done)));
             rec.put("id", cursor.getString(cursor.getColumnIndex(KEY_ID)));
             record_list.add(rec);
         }
@@ -115,12 +122,13 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     }
 
     // Update Record Details
-    public int UpdateRecordDetails(String qr_code, String desc1, String date, int id) {
+    public int UpdateRecordDetails(String qr_code, String desc1, String date, int id, String done) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cVals = new ContentValues();
         cVals.put(TITLE, qr_code);
         cVals.put(Desc, desc1);
         cVals.put(_date, date);
+        cVals.put(_done, done);
 
         return db.update(TABLE_Records, cVals, KEY_ID + " = ?", new String[]{String.valueOf(id)});
     }
