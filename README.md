@@ -1,1 +1,2 @@
-# Todo-App
+# Android Todo-App
+## Written in Java
